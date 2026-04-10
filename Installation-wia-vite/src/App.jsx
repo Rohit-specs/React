@@ -1,4 +1,5 @@
-import btn from './button.jsx';
+import { MyButton } from "./MyButton"
+
 
 function App() {
 
@@ -7,7 +8,7 @@ function App() {
       <ul>
         <li>lorem10</li>
         <li>
-          <btn/>
+           <MyButton/>
           </li>
         <li>lorem10</li>
         <li>lorem10</li>
