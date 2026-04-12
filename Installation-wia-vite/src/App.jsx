@@ -1,18 +1,15 @@
-import { MyButton } from "./MyButton"
+import { Footer } from "./components/Footer"
+import { Header } from "./components/Header"
+import { Food } from "./components/Food"
 
 
 function App() {
 
   return (
     <>
-      <ul>
-        <li>lorem10</li>
-        <li>
-           <MyButton/>
-          </li>
-        <li>lorem10</li>
-        <li>lorem10</li>
-      </ul>
+      <Header />
+      <Food />
+      <Footer />
     </>
   )
 }
