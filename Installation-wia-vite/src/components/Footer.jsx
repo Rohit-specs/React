@@ -1,11 +1,7 @@
-import { Fragment } from "react";
-
-export function Footer(){
+export default function Footer() {
     return(
-        <Fragment>
         <footer>
-            <p>&copy; {new Date().getFullYear()}</p>
+            <p>Lorem ipsum dolor sit amet.</p>
         </footer>
-        </Fragment>
     )
 }
