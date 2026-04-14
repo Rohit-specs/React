@@ -1,4 +1,4 @@
-*{
+/* *{
     box-sizing: border-box;
     margin: 0px;
 }
@@ -33,4 +33,35 @@
 }
 .myHeader a:hover{
     color: inherit;
+} */
+
+*{
+    text-align: center;
+}
+body{
+    background-color: whitesmoke;
+}
+.avatar{
+    border-radius: 50%;
+    max-width: 40%;
+}
+.staticcard{
+    max-width: 350px;
+    margin-inline: auto;
+    padding: 18px;
+    background-color: white;
+    border-radius: 8px;
+    /* aspect-ratio: 1/1; */
+}
+.footer{
+    margin-inline: auto;
+}
+.fontsizelg{
+    font-size: 1.5rem;
+}
+.role{
+    color: rgba(44, 62, 88, 0.9);
+}
+.fw-480{
+    font-weight: 480;
 }

@@ -1,7 +1,7 @@
-export default function Footer() {
+export function Footer() {
     return(
         <footer>
-            <p>Lorem ipsum dolor sit amet.</p>
+            <p className="mt-4 fw-medium opacity-75">Created for React practice</p>
         </footer>
     )
 }
