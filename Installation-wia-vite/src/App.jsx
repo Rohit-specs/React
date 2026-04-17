@@ -1,30 +1,15 @@
-import Card from "./components/Card"
-import {Header} from "./components/Header"
-import {Footer} from "./components/Footer"
-
-// import { Food } from "./components/Food"
-
-
-// function App() {
-
-//   return (
-//     <>
-//       <Header />
-//       <Food />
-//       <Footer />
-//     </>
-//   )
-// }
+import { Header } from './dynamic-card/Header'
+import { Footer } from './dynamic-card/Footer'
+import Dynamic_card from './dynamic-card/Dynamic_card'
+import { Fragment } from 'react'
 function App() {
 
-
-  return (
-    <>
-      <Header></Header>
-      <Card />
-      <Footer />
-    </>
-  )
+    return(<Fragment>
+        <Header/>
+    <Dynamic_card/>
+    <Footer/>
+    </Fragment>
+)
 }
 
 export default App
