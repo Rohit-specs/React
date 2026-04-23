@@ -3,33 +3,36 @@ import { Fragment, useReducer } from "react";
 function UseReducer() {
     const initialCount = 0
     const finalCount = 10
+    let newCount;
     
     function reducer(count,action){
         switch (action.type) {
             case "INCREASE+1":
-                count = count+1
+                newCount = count+1
                 break;
             case "INCREASE+2":
-                count = count+2
+                newCount = count+2
                 break;
             case "DECREASE-1":
-                count = count-1
+                newCount = count-1
                 break;
             case "DECREASE-2":
-                count = count-2
+                newCount = count-2
                 break;
             case "RESET":
                 return initialCount
             default:
                 return count
         }
-        if (count>finalCount) {
-            return finalCount
+        if (newCount>finalCount) {
+            alert(`You can't increase value above ${finalCount}`)
+            return count
         }
-        if (count<initialCount){
-            return initialCount
+        if (newCount<initialCount){
+            alert(`You can't decrease value below ${initialCount}`)
+            return count
         }
-        return count
+        return newCount
 
     }
     const [count,dispatch] = useReducer(reducer,initialCount)
