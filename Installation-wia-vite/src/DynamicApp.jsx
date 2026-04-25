@@ -4,7 +4,7 @@ import Dynamic_card from './dynamic-card/Dynamic_card'
 import { Fragment } from 'react'
 
 import './index.css'
-function App() {
+function DynamicApp() {
 
     return(<Fragment>
         <Header/>
@@ -14,4 +14,4 @@ function App() {
 )
 }
 
-export default App
+export default DynamicApp

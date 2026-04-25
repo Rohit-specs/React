@@ -17,7 +17,7 @@ import './index.css'
 //     </>
 //   )
 // }
-function App() {
+function StaticApp() {
 
 
   return (
@@ -29,4 +29,4 @@ function App() {
   )
 }
 
-export default App
+export default StaticApp

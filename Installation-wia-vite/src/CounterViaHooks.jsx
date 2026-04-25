@@ -1,3 +1,5 @@
+import UseState from "./components/UseState"
+import UseReducer from "./components/UseReducer"
 function CounterViaHooks(){
 
     return(

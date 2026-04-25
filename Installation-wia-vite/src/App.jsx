@@ -1,30 +1,32 @@
-import { BrowserRouter , Route, Routes} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { Fragment, useState } from "react"
-import UseState from "./components/UseState"
-import UseReducer from "./components/UseReducer"
+import StaticApp from "./StaticApp"
+import DynamicApp from "./DynamicApp"
+import CounterViaHooks from "./CounterViaHooks"
+import RootLayout from "./Layouts/RootLayout"
 
 // import ToDoApp from "./components/ToDoApp"
 
-function App(){
-
-    return(
-        <div className="text-center">
-            <UseState/>
-            <UseReducer/>
-        </div>
-    )
+function App() {
 
     // return(
-    //     <BrowserRouter>
-    //     <Routes>
-            
-    //         <Route path='/' element={<Static__App/>}/>
-    //         <Route path='/Dynamic_app' element={<Dynamic__App/>}/>
-    //         <Route path='/Cou' element={<CounterViaHooks/>}/>
-
-    //     </Routes>
-    //     </BrowserRouter>
+    //     <div className="text-center">
+    //         <UseState/>
+    //         <UseReducer/>
+    //     </div>
     // )
-    
+
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route element={<RootLayout />}>
+                    <Route path='/' element={<StaticApp />} />
+                    <Route path='/DynamicApp' element={<DynamicApp />} />
+                    <Route path='/CounterViaHooks' element={<CounterViaHooks />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
+    )
+
 }
 export default App
