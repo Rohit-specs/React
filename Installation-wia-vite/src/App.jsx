@@ -9,13 +9,6 @@ import RootLayout from "./Layouts/RootLayout"
 
 function App() {
 
-    // return(
-    //     <div className="text-center">
-    //         <UseState/>
-    //         <UseReducer/>
-    //     </div>
-    // )
-
     return (
         <BrowserRouter>
             <Routes>
