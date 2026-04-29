@@ -1,5 +1,5 @@
 import { Avatar } from "./Avatar"
-import { userData } from "../database/users_data"
+import { userData } from "../data/users_data"
 function Dynamic_card() {
     return (
         <main className="d-flex flex-wrap gap-2 justify-content-center">
