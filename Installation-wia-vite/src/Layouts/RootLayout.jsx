@@ -16,7 +16,7 @@ function RootLayout() {
                         })}
                     </ul>
                 </div>
-                <div className="col-10"><Outlet /></div>
+                <div className="col-10"><Outlet/></div>
             </div>
         </div>
     )

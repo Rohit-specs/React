@@ -71,3 +71,6 @@ body{
 .fw-480{
     font-weight: 480;
 }
+.card-todo{
+    max-width: 500px;
+}

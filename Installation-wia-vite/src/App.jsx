@@ -6,7 +6,7 @@ import DynamicApp from "./DynamicApp"
 import CounterViaHooks from "./CounterViaHooks"
 import RootLayout from "./Layouts/RootLayout"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import ToDoApp from "./components/ToDoApp"
+import ToDoApp from "./pages/ToDoApp"
 import { router } from "./routes/MainRoutes"
 
 function App() {
