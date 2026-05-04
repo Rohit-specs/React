@@ -33,9 +33,9 @@ function ToDoApp() {
         <div className="card p-4 card-todo mx-auto mt-4">
             <h3 className="text-start">Todo List</h3>
             
-            <div class="input-group mb-3">
-  <input type="text" class="form-control" value={event} onChange={(e)=> setEvent(e.target.value)} placeholder="Enter list item name"/>
-  <button class="input-group-text" onClick={addTodo}>Add Todo item</button>
+            <div className="input-group mb-3">
+  <input type="text" className="form-control" value={event} onChange={(e)=> setEvent(e.target.value)} placeholder="Enter list item name"/>
+  <button className="input-group-text" onClick={addTodo}>Add Todo item</button>
 </div>
 
 
