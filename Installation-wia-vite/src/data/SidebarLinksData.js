@@ -10,5 +10,7 @@ export const SidebarLinksData = [
     { id:9, links: "/rb-listgroup" ,menuItem: "RB List Group"},
     { id:10, links: "/rb-spinners" ,menuItem: "RB Spinner"},
     { id:11, links: "/rb-tables" ,menuItem: "RB Tables"},
+    { id:12, links: "/rb-figure" ,menuItem: "RB Figures"},
+    { id:13, links: "/rb-pagination" ,menuItem: "RB Pagination"},
   ];
 

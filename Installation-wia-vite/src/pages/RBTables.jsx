@@ -44,7 +44,35 @@ const RBTables = () => {
     }
     return (
         <div>
-            <Table>
+            <Table borderless>
+                <thead className='border-bottom'>
+                    <tr>
+                        <th>Employee</th>
+                        <th>Department</th>
+                        <th>Salary</th>
+                        <th>Payment Date</th>
+                        <th>Payment Status</th>
+                        <th>Employment Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {TableData.map((emp) => {
+                        return (
+                            <tr key={emp.id}>
+                                <td>{emp.employeeName}</td>
+                                {/* <td> </td> */}
+                                {/* <td>{`${department(emp.department)} ${emp.department}`} </td> */}
+                                <td>{department(emp.department)} </td>
+                                <td>${emp.salary}</td>
+                                <td>{emp.paymentDate}</td>
+                                <td>{badgeVarient(emp.paymentStatus)}</td>
+                                <td>{emp.employmentStatus}</td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
+            </Table>
+            <Table responsive>
                 <thead>
                     <tr>
                         <th>Employee</th>
