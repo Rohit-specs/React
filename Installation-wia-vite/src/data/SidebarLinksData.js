@@ -12,5 +12,6 @@ export const SidebarLinksData = [
     { id:11, links: "/rb-tables" ,menuItem: "RB Tables"},
     { id:12, links: "/rb-figure" ,menuItem: "RB Figures"},
     { id:13, links: "/rb-pagination" ,menuItem: "RB Pagination"},
+    { id:14, links: "/rb-images" ,menuItem: "RB Images"},
   ];
 

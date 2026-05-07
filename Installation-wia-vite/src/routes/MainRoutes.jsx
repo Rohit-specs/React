@@ -15,6 +15,7 @@ import RBSpinners from "../pages/RBSpinners"
 import RBTables from "../pages/RBTables"
 import RBFigures from "../pages/RBFigures"
 import RBPagination from "../pages/RBPagination"
+import RBImages from "../pages/RBImages"
 export const router = createBrowserRouter(
     [
         {
@@ -35,6 +36,7 @@ export const router = createBrowserRouter(
                     { path: "/rb-tables", element: <RBTables/> },
                     { path: "/rb-figure", element: <RBFigures/> },
                     { path: "/rb-pagination", element: <RBPagination/> },
+                    { path: "/rb-images", element: <RBImages/> },
                 ]
         }
     ]

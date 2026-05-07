@@ -5,6 +5,7 @@ const RBButtons = () => {
   const [styles, setStyles] = useState([])
   const handleChange = (value) =>{
     setStyles(value)
+    
   }
   const getStyle = () => {
     return {
@@ -42,10 +43,10 @@ const RBButtons = () => {
               type="checkbox"
               value={styles}
               onChange={handleChange}>
-              <ToggleButton value={"Bold"} variant="outline-primary">B</ToggleButton>
-              <ToggleButton value={"italic"} variant="outline-primary">I</ToggleButton>
-              <ToggleButton value={"underline"} variant="outline-primary">U</ToggleButton>
-              <ToggleButton value={"strike"} variant="outline-primary">S</ToggleButton>
+              <ToggleButton value={"Bold"} id='1' variant="primary">B</ToggleButton>
+              <ToggleButton value={"italic"} id='2' variant="primary">I</ToggleButton>
+              <ToggleButton value={"underline"} id='3' variant="primary">U</ToggleButton>
+              <ToggleButton value={"strike"} id='4' variant="primary">S</ToggleButton>
             </ToggleButtonGroup></Stack>
           <p style={getStyle()}>Here, the actions of the above buttons will be reflected</p>
         </Stack>

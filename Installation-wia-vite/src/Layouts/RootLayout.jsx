@@ -10,37 +10,37 @@ function RootLayout() {
             <Row>
                 <Col md={3} className="bg-primary min-vh-100">
                     <CardBody>
-                        <Accordion defaultActiveKey="0">
-      <Accordion.Item eventKey="0">
-        <Accordion.Header>React bootstrap</Accordion.Header>
-        <Accordion.Body><ListGroup>
-                        {/* <li><NavLink className="text-light" to="/">Static Card</NavLink></li>
+                        <Accordion>
+                            <Accordion.Item eventKey="0">
+                                <Accordion.Header>React bootstrap</Accordion.Header>
+                                <Accordion.Body><ListGroup>
+                                    {/* <li><NavLink className="text-light" to="/">Static Card</NavLink></li>
                         <li><NavLink className="text-light" to="/dynamic-app">Dynamic Card</NavLink></li>
                         <li><NavLink className="text-light" to="/counter-via-hooks">Counter</NavLink></li> */}
-                        
-                        {SidebarLinksData.map((item)=>{
-                            return(<ListGroup.Item key={item.id}><Link  to={item.links}>{item.menuItem}</Link></ListGroup.Item>)
-                        })}
-                    </ListGroup>
-        </Accordion.Body>
-      </Accordion.Item>
-      <Accordion.Item eventKey="1">
-        <Accordion.Header>Accordion Item #2</Accordion.Header>
-        <Accordion.Body>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          
-        </Accordion.Body>
-      </Accordion.Item>
-    </Accordion>
+
+                                    {SidebarLinksData.map((item) => {
+                                        return (<ListGroup.Item key={item.id}><Link to={item.links}>{item.menuItem}</Link></ListGroup.Item>)
+                                    })}
+                                </ListGroup>
+                                </Accordion.Body>
+                            </Accordion.Item>
+                            <Accordion.Item eventKey="1">
+                                <Accordion.Header>Accordion Item #2</Accordion.Header>
+                                <Accordion.Body>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+
+                                </Accordion.Body>
+                            </Accordion.Item>
+                        </Accordion>
                     </CardBody>
                 </Col>
                 <Col md={9}>
-                        <CardBody>
-                <Outlet/></CardBody>
+                    <CardBody>
+                        <Outlet /></CardBody>
                 </Col>
-            
-       </Row></Card></Container>
+
+            </Row></Card></Container>
     )
 }
 
