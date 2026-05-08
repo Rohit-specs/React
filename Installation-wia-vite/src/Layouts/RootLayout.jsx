@@ -1,5 +1,5 @@
 import { Link, Outlet, NavLink } from "react-router-dom";
-import { SidebarLinksData } from "../data/SidebarLinksData";
+import { SidebarLinksData , RbNonIntractive , RbIntractive} from "../data/SidebarLinksData";
 import { Card, CardBody, Col, Container, ListGroup, Row } from "react-bootstrap";
 import { Accordion } from "react-bootstrap";
 
@@ -12,11 +12,8 @@ function RootLayout() {
                     <CardBody>
                         <Accordion>
                             <Accordion.Item eventKey="0">
-                                <Accordion.Header>React bootstrap</Accordion.Header>
+                                <Accordion.Header>React Basic</Accordion.Header>
                                 <Accordion.Body><ListGroup>
-                                    {/* <li><NavLink className="text-light" to="/">Static Card</NavLink></li>
-                        <li><NavLink className="text-light" to="/dynamic-app">Dynamic Card</NavLink></li>
-                        <li><NavLink className="text-light" to="/counter-via-hooks">Counter</NavLink></li> */}
 
                                     {SidebarLinksData.map((item) => {
                                         return (<ListGroup.Item key={item.id}><Link to={item.links}>{item.menuItem}</Link></ListGroup.Item>)
@@ -25,10 +22,20 @@ function RootLayout() {
                                 </Accordion.Body>
                             </Accordion.Item>
                             <Accordion.Item eventKey="1">
-                                <Accordion.Header>Accordion Item #2</Accordion.Header>
-                                <Accordion.Body>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                                <Accordion.Header>RB Non-interactive component</Accordion.Header>
+                                <Accordion.Body><ListGroup>
+                                    {RbNonIntractive.map((item) => {
+                                        return (<ListGroup.Item key={item.id}><Link to={item.links}>{item.menuItem}</Link></ListGroup.Item>)
+                                    })}</ListGroup>
+
+                                </Accordion.Body>
+                            </Accordion.Item>
+                            <Accordion.Item eventKey="2">
+                                <Accordion.Header>RB Interactive component</Accordion.Header>
+                                <Accordion.Body><ListGroup>
+                                    {RbIntractive.map((item) => {
+                                        return (<ListGroup.Item key={item.id}><Link to={item.links}>{item.menuItem}</Link></ListGroup.Item>)
+                                    })}</ListGroup>
 
                                 </Accordion.Body>
                             </Accordion.Item>
