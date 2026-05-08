@@ -74,3 +74,11 @@ body{
 .card-todo{
     max-width: 500px;
 }
+.avatar{
+    margin-left: -10px;
+    cursor: pointer;
+    position: relative;
+}
+.avatar:hover{
+    z-index: 100;
+}

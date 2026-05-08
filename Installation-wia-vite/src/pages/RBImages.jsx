@@ -13,16 +13,23 @@ const RBImages = () => {
         
         </Col>
         <Col lg={5}>
-        <Stack direction='horizontal'></Stack>
-        Avatar Sizes
+        
+        <div className="">Avatar Sizes</div>
         <Image src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrwLa6y7AGAH5yIx9AAlfQpvKB8jPg-Z9rtw&s' style={{ width: '50px'}}></Image>
         <Image src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrwLa6y7AGAH5yIx9AAlfQpvKB8jPg-Z9rtw&s' style={{ width: '60px'}}></Image>
         <Image src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrwLa6y7AGAH5yIx9AAlfQpvKB8jPg-Z9rtw&s' style={{ width: '70px'}}></Image>
         <Image src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrwLa6y7AGAH5yIx9AAlfQpvKB8jPg-Z9rtw&s' style={{ width: '80px'}}></Image>
         <Image src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrwLa6y7AGAH5yIx9AAlfQpvKB8jPg-Z9rtw&s' style={{ width: '90px'}}></Image>
         </Col>
-        <Col lg={4}>
-        
+        <Col lg={4} className='avatar-group'>
+        <div>avatar group</div>
+          <Image className='avatar' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrwLa6y7AGAH5yIx9AAlfQpvKB8jPg-Z9rtw&s' style={{ width: '30px'}}></Image>
+          <Image className='avatar' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrwLa6y7AGAH5yIx9AAlfQpvKB8jPg-Z9rtw&s' style={{ width: '30px'}}></Image>
+          <Image className='avatar' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrwLa6y7AGAH5yIx9AAlfQpvKB8jPg-Z9rtw&s' style={{ width: '30px'}}></Image>
+          <Image className='avatar' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrwLa6y7AGAH5yIx9AAlfQpvKB8jPg-Z9rtw&s' style={{ width: '30px'}}></Image>
+          <Image className='avatar' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrwLa6y7AGAH5yIx9AAlfQpvKB8jPg-Z9rtw&s' style={{ width: '30px'}}></Image>
+          <Image className='avatar' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrwLa6y7AGAH5yIx9AAlfQpvKB8jPg-Z9rtw&s' style={{ width: '30px'}}></Image>
+          <Image className='avatar' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrwLa6y7AGAH5yIx9AAlfQpvKB8jPg-Z9rtw&s' style={{ width: '30px'}}></Image>
         </Col>
     </Row>
   )
