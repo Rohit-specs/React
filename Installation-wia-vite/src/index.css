@@ -82,3 +82,6 @@ body{
 .avatar:hover{
     z-index: 100;
 }
+.breadcrumb-item + .breadcrumb-item::before {
+    content: ">"
+}

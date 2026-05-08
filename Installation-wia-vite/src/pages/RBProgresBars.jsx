@@ -19,7 +19,8 @@ const RBProgresBars = () => {
             <Button onClick={() => dispatch({ type: "INCREMENT" })}>Progress +5%</Button>
             <Button onClick={() => dispatch({ type: "DECREMENT" })}>Progress -5%</Button>
             <div></div>
-            <ProgressBar className='mt-3' now={progress} label={`${progress}%`} />
+            <ProgressBar className='mt-3' animated now={progress} label={`${progress}%`} />
+            <ProgressBar className='mt-3' animated now={progress}  style={{height:"12px"}} variant='danger'/>
             <hr className='my-4' />
             <Card style={{ width: '20rem' }}><Card.Body>
                 <Card.Title>Bootstrap Dashboard Application</Card.Title>

@@ -13,6 +13,7 @@ export const SidebarLinksData = [
     { id:12, links: "/rb-figure" ,menuItem: "RB Figures"},
     { id:13, links: "/rb-pagination" ,menuItem: "RB Pagination"},
     { id:14, links: "/rb-images" ,menuItem: "RB Images"},
-    { id:14, links: "/rb-breadcrumbs" ,menuItem: "RB Breadcrumbs"},
+    { id:15, links: "/rb-breadcrumbs" ,menuItem: "RB Breadcrumbs"},
+    { id:16, links: "/rb-progress-bar" ,menuItem: "RB Progress Bar"},
   ];
 

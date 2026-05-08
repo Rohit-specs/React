@@ -60,8 +60,6 @@ const RBTables = () => {
                         return (
                             <tr key={emp.id}>
                                 <td>{emp.employeeName}</td>
-                                {/* <td> </td> */}
-                                {/* <td>{`${department(emp.department)} ${emp.department}`} </td> */}
                                 <td>{department(emp.department)} </td>
                                 <td>${emp.salary}</td>
                                 <td>{emp.paymentDate}</td>
@@ -88,8 +86,6 @@ const RBTables = () => {
                         return (
                             <tr key={emp.id}>
                                 <td>{emp.employeeName}</td>
-                                {/* <td> </td> */}
-                                {/* <td>{`${department(emp.department)} ${emp.department}`} </td> */}
                                 <td>{department(emp.department)} </td>
                                 <td>${emp.salary}</td>
                                 <td>{emp.paymentDate}</td>
