@@ -1,7 +1,8 @@
 import { Link, Outlet, NavLink } from "react-router-dom";
-import { SidebarLinksData , RbNonIntractive , RbIntractive} from "../data/SidebarLinksData";
+import { SidebarLinksData, RbNonIntractive, RbIntractive } from "../data/SidebarLinksData";
 import { Card, CardBody, Col, Container, ListGroup, Row } from "react-bootstrap";
 import { Accordion } from "react-bootstrap";
+import { ArrowRight } from 'react-bootstrap-icons';
 
 
 function RootLayout() {
@@ -16,7 +17,7 @@ function RootLayout() {
                                 <Accordion.Body><ListGroup>
 
                                     {SidebarLinksData.map((item) => {
-                                        return (<ListGroup.Item key={item.id}><Link to={item.links}>{item.menuItem}</Link></ListGroup.Item>)
+                                        return (<ListGroup.Item className="text-start" key={item.id}><Link to={item.links}>{<div className="icon-link"><ArrowRight />{item.menuItem}</div>}</Link></ListGroup.Item>)
                                     })}
                                 </ListGroup>
                                 </Accordion.Body>
@@ -25,7 +26,7 @@ function RootLayout() {
                                 <Accordion.Header>RB Non-interactive component</Accordion.Header>
                                 <Accordion.Body><ListGroup>
                                     {RbNonIntractive.map((item) => {
-                                        return (<ListGroup.Item key={item.id}><Link to={item.links}>{item.menuItem}</Link></ListGroup.Item>)
+                                        return (<ListGroup.Item className="text-start" key={item.id}><Link to={item.links}>{<div className="icon-link"><ArrowRight />{item.menuItem}</div>}</Link></ListGroup.Item>)
                                     })}</ListGroup>
 
                                 </Accordion.Body>
@@ -34,7 +35,7 @@ function RootLayout() {
                                 <Accordion.Header>RB Interactive component</Accordion.Header>
                                 <Accordion.Body><ListGroup>
                                     {RbIntractive.map((item) => {
-                                        return (<ListGroup.Item key={item.id}><Link to={item.links}>{item.menuItem}</Link></ListGroup.Item>)
+                                        return (<ListGroup.Item className="text-start" key={item.id}><Link to={item.links}>{<div className="icon-link"><ArrowRight />{item.menuItem}</div>}</Link></ListGroup.Item>)
                                     })}</ListGroup>
 
                                 </Accordion.Body>

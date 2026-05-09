@@ -1,25 +1,27 @@
+import { v4 as uuidv4 } from "uuid";
 export const SidebarLinksData = [
-  { id: 1, links: "/", menuItem: "Static Profile Card" },
-  { id: 2, links: "/dynamic-app", menuItem: "Dynamic Profile Card" },
-  { id: 3, links: "/counter-via-hooks", menuItem: "Counter" },
-  { id: 4, links: "/to-do-app", menuItem: "To Do App" },
+  { id: uuidv4(), links: "/", menuItem: "Static Profile Card" },
+  { id: uuidv4(), links: "/dynamic-app", menuItem: "Dynamic Profile Card" },
+  { id: uuidv4(), links: "/counter-via-hooks", menuItem: "Counter" },
+  { id: uuidv4(), links: "/to-do-app", menuItem: "To Do App" },
 ];
 export const RbNonIntractive = [
-  { id: 1, links: "/rb-badges", menuItem: "RB Badges" },
-  { id: 2, links: "/rb-buttons", menuItem: "RB Buttons" },
-  { id: 3, links: "/rb-button-groups", menuItem: "RB Button Groups" },
-  { id: 4, links: "/rb-cards", menuItem: "RB Cards" },
-  { id: 5, links: "/rb-listgroup", menuItem: "RB List Group" },
-  { id: 6, links: "/rb-spinners", menuItem: "RB Spinner" },
-  { id: 7, links: "/rb-tables", menuItem: "RB Tables" },
-  { id: 8, links: "/rb-figure", menuItem: "RB Figures" },
-  { id: 9, links: "/rb-pagination", menuItem: "RB Pagination" },
-  { id: 10, links: "/rb-images", menuItem: "RB Images" },
-  { id: 11, links: "/rb-breadcrumbs", menuItem: "RB Breadcrumbs" },
-  { id: 12, links: "/rb-progress-bar", menuItem: "RB Progress Bar" },
+  { id: uuidv4(), links: "/rb-badges", menuItem: "RB Badges" },
+  { id: uuidv4(), links: "/rb-buttons", menuItem: "RB Buttons" },
+  { id: uuidv4(), links: "/rb-button-groups", menuItem: "RB Button Groups" },
+  { id: uuidv4(), links: "/rb-cards", menuItem: "RB Cards" },
+  { id: uuidv4(), links: "/rb-listgroup", menuItem: "RB List Group" },
+  { id: uuidv4(), links: "/rb-spinners", menuItem: "RB Spinner" },
+  { id: uuidv4(), links: "/rb-tables", menuItem: "RB Tables" },
+  { id: uuidv4(), links: "/rb-figure", menuItem: "RB Figures" },
+  { id: uuidv4(), links: "/rb-pagination", menuItem: "RB Pagination" },
+  { id: uuidv4(), links: "/rb-images", menuItem: "RB Images" },
+  { id: uuidv4(), links: "/rb-breadcrumbs", menuItem: "RB Breadcrumbs" },
+  { id: uuidv4(), links: "/rb-progress-bar", menuItem: "RB Progress Bar" },
 ];
 export const RbIntractive = [
-  { id: 1, links: "/rb-badges", menuItem: "RB Badges" },
+  { id: uuidv4(), links: "/rb-accordian", menuItem: "RB Accordian" },
+  { id: uuidv4(), links: "/rb-carousel", menuItem: "RB Carousel" },
 
 ];
 

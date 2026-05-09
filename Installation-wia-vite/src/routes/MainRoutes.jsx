@@ -17,6 +17,8 @@ import RBFigures from "../pages/RBFigures"
 import RBPagination from "../pages/RBPagination"
 import RBImages from "../pages/RBImages"
 import RBBreadcrumbs from "../pages/RBBreadcrumbs"
+import RBAccordian from "../pages/RBAccordian"
+import RBCarousel from "../pages/RBCarousel"
 export const router = createBrowserRouter(
     [
         {
@@ -38,7 +40,9 @@ export const router = createBrowserRouter(
                     { path: "/rb-figure", element: <RBFigures/> },
                     { path: "/rb-pagination", element: <RBPagination/> },
                     { path: "/rb-images", element: <RBImages/> },
+                    { path: "/rb-accordian", element: <RBAccordian/> },
                     { path: "/rb-breadcrumbs", element: <RBBreadcrumbs/> },
+                    { path: "/rb-carousel", element: <RBCarousel/> },
                 ]
         }
     ]
