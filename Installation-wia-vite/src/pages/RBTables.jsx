@@ -28,14 +28,14 @@ const RBTables = () => {
                 variant = "primary"
                 break;
         }
-        return <Badge bg={variant}>{status}</Badge>
+        return <Badge className={`bg-${variant}-subtle text-${variant}`}>{status}</Badge>
     }
     function department(data) {
         let variant;
         const status = data
         switch (status) {
             case "Sales":
-                return (<div className="icon-link"><Cart /><span>{status}</span></div>)
+                return (<div className="icon-link bg-in"><Cart /><span>{status}</span></div>)
             case "Support":
                 return (<div className="icon-link"><Telephone /><span>{status}</span></div>)
             case "Design":
