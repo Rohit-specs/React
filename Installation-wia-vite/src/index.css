@@ -85,3 +85,10 @@ body{
 /* .breadcrumb-item + .breadcrumb-item::before {
     content: url(./assets/images/avatar.jpg);
 } */
+
+.carousel-btn-indicator{
+    height: 1rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background: #ddd7d7d3;
+}
