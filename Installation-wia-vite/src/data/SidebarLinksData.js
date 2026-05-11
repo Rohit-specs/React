@@ -22,6 +22,6 @@ export const RbNonIntractive = [
 export const RbIntractive = [
   { id: uuidv4(), links: "/rb-accordian", menuItem: "RB Accordian" },
   { id: uuidv4(), links: "/rb-carousel", menuItem: "RB Carousel" },
-
+  { id: uuidv4(), links: "/rb-dropdown", menuItem: "RB Dropdown" },
 ];
 
