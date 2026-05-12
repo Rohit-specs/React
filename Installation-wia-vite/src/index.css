@@ -92,3 +92,6 @@ body{
     border-radius: 50%;
     background: #ddd7d7d3;
 }
+*{
+    box-sizing: border-box;
+}
