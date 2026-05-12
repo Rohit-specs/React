@@ -20,6 +20,7 @@ import RBBreadcrumbs from "../pages/RBBreadcrumbs"
 import RBAccordian from "../pages/RBAccordian"
 import RBCarousel from "../pages/RBCarousel"
 import RBDropdown from "../pages/RBDropdown"
+import RBModel from "../pages/RBModel"
 export const router = createBrowserRouter(
     [
         {
@@ -45,6 +46,7 @@ export const router = createBrowserRouter(
                     { path: "/rb-breadcrumbs", element: <RBBreadcrumbs/> },
                     { path: "/rb-carousel", element: <RBCarousel/> },
                     { path: "/rb-dropdown", element: <RBDropdown/> },
+                    { path: "/rb-model", element: <RBModel/> },
                 ]
         }
     ]
