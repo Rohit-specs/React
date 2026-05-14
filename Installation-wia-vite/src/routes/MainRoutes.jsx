@@ -22,6 +22,8 @@ import RBCarousel from "../pages/RBCarousel"
 import RBDropdown from "../pages/RBDropdown"
 import RBModel from "../pages/RBModel"
 import RBNavbar from "../pages/RBNavbar"
+import RBNavandTabs from "../pages/RBNavandTabs"
+import RBOverlays from "../pages/RBOverlays"
 export const router = createBrowserRouter(
     [
         {
@@ -49,6 +51,8 @@ export const router = createBrowserRouter(
                     { path: "/rb-dropdown", element: <RBDropdown/> },
                     { path: "/rb-model", element: <RBModel/> },
                     { path: "/rb-navbar", element: <RBNavbar/> },
+                    { path: "/rb-navandtabs", element: <RBNavandTabs/> },
+                    { path: "/rb-overlays", element: <RBOverlays/> },
                 ]
         }
     ]

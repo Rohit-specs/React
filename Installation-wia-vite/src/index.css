@@ -92,6 +92,9 @@ body{
     border-radius: 50%;
     background: #ddd7d7d3;
 }
-*{
-    box-sizing: border-box;
+.nav-link{
+    color: black;
+}
+.nav-link.active{
+    border-bottom: 2px solid rgba(16, 95, 168, 0.712);
 }

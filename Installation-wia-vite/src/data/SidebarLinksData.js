@@ -25,5 +25,7 @@ export const RbIntractive = [
   { id: uuidv4(), links: "/rb-dropdown", menuItem: "RB Dropdown" },
   { id: uuidv4(), links: "/rb-model", menuItem: "RB Model" },
   { id: uuidv4(), links: "/rb-navbar", menuItem: "RB Navbar&offcanvas" },
+  { id: uuidv4(), links: "/rb-navandtabs", menuItem: "RB Nav & Tabs" },
+  { id: uuidv4(), links: "/rb-overlays", menuItem: "RB Overlays" },
 ];
 
