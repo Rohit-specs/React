@@ -98,3 +98,6 @@ body{
 .nav-link.active{
     border-bottom: 2px solid rgba(16, 95, 168, 0.712);
 }
+.react-hook-form *{
+    text-align: start;
+}

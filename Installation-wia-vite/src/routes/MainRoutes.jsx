@@ -24,6 +24,7 @@ import RBModel from "../pages/RBModel"
 import RBNavbar from "../pages/RBNavbar"
 import RBNavandTabs from "../pages/RBNavandTabs"
 import RBOverlays from "../pages/RBOverlays"
+import ReactHookForms from "../pages/forms/ReactHookForms"
 export const router = createBrowserRouter(
     [
         {
@@ -53,6 +54,7 @@ export const router = createBrowserRouter(
                     { path: "/rb-navbar", element: <RBNavbar/> },
                     { path: "/rb-navandtabs", element: <RBNavandTabs/> },
                     { path: "/rb-overlays", element: <RBOverlays/> },
+                    { path: "/react-hook-forms", element: <ReactHookForms/> },
                 ]
         }
     ]

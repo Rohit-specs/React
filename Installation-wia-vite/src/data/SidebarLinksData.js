@@ -28,4 +28,8 @@ export const RbIntractive = [
   { id: uuidv4(), links: "/rb-navandtabs", menuItem: "RB Nav & Tabs" },
   { id: uuidv4(), links: "/rb-overlays", menuItem: "RB Overlays" },
 ];
+export const Forms = [
+  { id: uuidv4(), links: "/react-hook-forms", menuItem: "React Hook Forms" },
+
+];
 

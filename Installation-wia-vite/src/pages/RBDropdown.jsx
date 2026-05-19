@@ -34,11 +34,11 @@ const RBDropdown = () => {
     </Dropdown></Col>
         <Col md={4}>
      <Dropdown>
-      <Dropdown.Toggle bsPrefix=' 'id="dropdown-basic" variant=' '>
+      <Dropdown.Toggle bsPrefix=' 'id="dropdown-basic" as={'span'}>
         <Image src='https://www.svgrepo.com/show/384670/account-avatar-profile-user.svg' className='w-25'/>
       </Dropdown.Toggle>
 
-      <Dropdown.Menu>
+      <Dropdown.Menu className='mt-4'>
         <Dropdown.Item href="#" className='icon-link'><Speedometer2/>Dashboard</Dropdown.Item>
         <Dropdown.Item href="#" className='icon-link'><Bell/>Notification</Dropdown.Item>
         <Dropdown.Item href="#" className='icon-link'><Gear/>Setting</Dropdown.Item>
