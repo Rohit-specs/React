@@ -87,34 +87,65 @@ const ReactHookForms = () => {
                     <Form.Label>Select Country</Form.Label>
                     <Form.Select
                         {...register("country", { required: "Country is required" })}>
-                            <option value={""}>Select Country</option>
-                            <option value={"india"}>INDIA</option>
-                            <option value={"usa"}>USA</option>
-                            <option value={"russia"}>Russia</option>
-                            <option value={"china"}>China</option>
-                        </Form.Select>
+                        <option value={""}>Select Country</option>
+                        <option value={"india"}>INDIA</option>
+                        <option value={"usa"}>USA</option>
+                        <option value={"russia"}>Russia</option>
+                        <option value={"china"}>China</option>
+                    </Form.Select>
                     <div className="text-danger">{errors?.country?.message}</div>
                 </Form.Group>
                 <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="state">
                     <Form.Label>Select State</Form.Label>
                     <Form.Select
                         {...register("state", { required: "state is required" })}>
-                            <option value={""}>Select State</option>
-                            <option value={"Uttrakhand"}>Uttrakhand</option>
-                            <option value={"Punjab"}>Punjab</option>
-                            <option value={"Delhi"}>Delhi</option>
-                            <option value={"Himanchal"}>Himanchal Pradesh</option>
-                        </Form.Select>
+                        <option value={""}>Select State</option>
+                        <option value={"Uttrakhand"}>Uttrakhand</option>
+                        <option value={"Punjab"}>Punjab</option>
+                        <option value={"Delhi"}>Delhi</option>
+                        <option value={"Himanchal"}>Himanchal Pradesh</option>
+                    </Form.Select>
                     <div className="text-danger">{errors?.state?.message}</div>
                 </Form.Group>
                 <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="cities">
                     <Form.Label>Select Prefered Cities</Form.Label>
-                    <Form.Select
-                        {...register("cities", { required: "cities is required" })}>
-                            <option value={""}>Select State</option>
-                            
-                        </Form.Select>
-                    <div className="text-danger">{errors?.state?.message}</div>
+                    <Form.Select multiple
+                        {...register("cities", {
+                             required: "cities is required" ,
+                             validate: (value)=> value.length==2 || "Please select any two cities",
+                             })} >
+                        <option value={""}>Select Cities</option>
+                        <option value={"delhi"}>Delhi</option>
+                        <option value={"tokyo"}>Tokyo</option>
+                        <option value={"paris"}>Paris</option>
+                        <option value={"london"}>London</option>
+                        <option value={"new_york"}>New York</option>
+
+                    </Form.Select>
+                    <div className="text-danger">{errors?.cities?.message}</div>
+                </Form.Group>
+                <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="address">
+                    <Form.Label>Your Complete Address</Form.Label>
+                    <Form.Control as='textarea' style={{resize:'none'}} rows={4} {...register("address",{required:"Please Enter Your Complete Address"})}>
+                    </Form.Control>
+                    <div className="text-danger">{errors?.address?.message}</div>
+                </Form.Group>
+                <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="pin_code">
+                    <Form.Label>Zip/Pin Code</Form.Label>
+                    <Form.Control {...register("pin_code",{
+                        required:"Please Enter Your Pin Code"
+                    })}>
+                    </Form.Control>
+                    <div className="text-danger">{errors?.pin_code?.message}</div>
+                </Form.Group>
+                <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="joining_date">
+                    <Form.Label>Joining Date</Form.Label>
+                    <Form.Control type='date' {...register("joining_date",{
+                        required:"Please Enter Your Joining Date",
+                        validate:(date) => new Date(date) < new Date() || "Joining date must be less than today's date"
+                    })}>
+                    </Form.Control>
+                    <div className="text-danger">{errors?.joining_date?.message}</div>
                 </Form.Group>
 
             </Row><Button className='text-start' type="submit">Submit form</Button></Form>
