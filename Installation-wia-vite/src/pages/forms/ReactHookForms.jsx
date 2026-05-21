@@ -147,7 +147,31 @@ const ReactHookForms = () => {
                     </Form.Control>
                     <div className="text-danger">{errors?.joining_date?.message}</div>
                 </Form.Group>
+                <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="gender">
+                    <Form.Label className='d-block'>Gender</Form.Label>
+                    <Form.Check type='radio' inline label="Male" value={"male"} id='Male' {...register("gender",{required:"Please select your gender"})}>
+                    </Form.Check>
+                    <Form.Check type='radio' inline label="Female" value={"female"}  id='Female' {...register("gender")}>
+                    </Form.Check>
+                    <Form.Check type='radio' inline label="Transgender" value={"transgender"} id='Transgender' {...register("gender")}>
+                    </Form.Check>
+                    
+                    <div className="text-danger">{errors?.gender?.message}</div>
+                </Form.Group>
+                <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="hobbies">
+                    <Form.Label className='d-block'>Hobbies</Form.Label>
+                    <Form.Check type='checkbox' inline label="drawing" id='drawing' value={"drawing"}{...register("hobbies",{required:"Please select your hobby",
 
+                    })}>
+                    </Form.Check>
+                    <Form.Check type='checkbox' inline label="singing" id='singing' value={"singing"}{...register("hobbies")}>
+                    </Form.Check>
+                    <Form.Check type='checkbox' inline label="dancing" id='dancing' value={"dancing"}{...register("hobbies")}>
+                    </Form.Check>
+                    
+                    <div className="text-danger">{errors?.hobbies?.message}</div>
+                </Form.Group>
+ 
             </Row><Button className='text-start' type="submit">Submit form</Button></Form>
     )
 }
