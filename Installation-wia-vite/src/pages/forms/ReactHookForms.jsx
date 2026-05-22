@@ -1,9 +1,30 @@
 import { useForm } from 'react-hook-form';
 import { Button, Col, Row, Form } from 'react-bootstrap';
 const ReactHookForms = () => {
-    const { formState: { errors }, register, handleSubmit } = useForm();
-    const submitHandler = () => {
+    const { formState: { errors }, register, handleSubmit,reset } = useForm({
+        defaultValues: {
+            firstname:"John",
+            lastname:"Smith",
+            age:20,
+            password:"Strong@123",
+            phoneNumber:"+918989898989",
+            email:"rohan01@gmail.com",
+            country:["india"],
+            state:["uttrakhand"],
+            cities:["tokyo","paris"],
+            address:"John Doe 123 Maple Street, Apartment 4B Springfield, IL 62704 United States",
+            pin_code:"263642",
+            joining_date:"2026-05-20",
+            gender:"male",
+            hobbies:["drawing","singing"],
+            terms_and_condition:"agreed"
 
+        }
+    });
+    const submitHandler = (value) => {
+        console.log(JSON.stringify(value))
+        reset()
+        // document.getElementsByClassName("react-hook-form").reset()
     }
     return (
         <Form className='react-hook-form' onSubmit={handleSubmit(submitHandler)}>
@@ -16,21 +37,21 @@ const ReactHookForms = () => {
                                 required: "The Firstname is required."
                                 ,
                             })} />
-                    <div className="text-danger">{errors?.firstname?.message}</div>
+                    <small className="text-danger">{errors?.firstname?.message}</small>
                 </Form.Group>
-                <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="secondname">
+                <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="lastname">
                     <Form.Label>Last name</Form.Label>
                     <Form.Control type=
-                        "text" {...register("secondname"
+                        "text" {...register("lastname"
                             , {
                                 required: "The Second name is required."
                                 ,
                             })} />
-                    <div className="text-danger">{errors?.secondname?.message}</div>
+                    <small className="text-danger">{errors?.lastname?.message}</small>
                 </Form.Group>
                 <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="age">
                     <Form.Label>Age</Form.Label>
-                    <Form.Control type="text" {...register("age"
+                    <Form.Control type="number" {...register("age"
                         , {
                             required: "The age is required."
                             ,
@@ -43,7 +64,7 @@ const ReactHookForms = () => {
                                 message: "Age must be less than or equal to 40"
                             },
                         })} />
-                    <div className="text-danger">{errors?.age?.message}</div>
+                    <small className="text-danger">{errors?.age?.message}</small>
                 </Form.Group>
                 <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="password">
                     <Form.Label>Password</Form.Label>
@@ -61,7 +82,7 @@ const ReactHookForms = () => {
                             validate: (value) => !value.includes(" ") || "Password should not contain spaces"
                         }
                         )} />
-                    <div className="text-danger">{errors?.password?.message}</div>
+                    <small className="text-danger">{errors?.password?.message}</small>
                 </Form.Group>
                 <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="phone">
                     <Form.Label>Phone Number</Form.Label>
@@ -71,7 +92,7 @@ const ReactHookForms = () => {
                             pattern: { value: /^(?:\+?91)?[6-9]\d{9}$/, message: "Invalid number" }
                         }
                         )} />
-                    <div className="text-danger">{errors?.phoneNumber?.message}</div>
+                    <small className="text-danger">{errors?.phoneNumber?.message}</small>
                 </Form.Group>
                 <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="email">
                     <Form.Label>Phone Number</Form.Label>
@@ -81,97 +102,150 @@ const ReactHookForms = () => {
                             pattern: { value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, message: "Please enter a valid email address" }
                         }
                         )} />
-                    <div className="text-danger">{errors?.email?.message}</div>
+                    <small className="text-danger">{errors?.email?.message}</small>
                 </Form.Group>
                 <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="country">
                     <Form.Label>Select Country</Form.Label>
                     <Form.Select
                         {...register("country", { required: "Country is required" })}>
                         <option value={""}>Select Country</option>
-                        <option value={"india"}>INDIA</option>
-                        <option value={"usa"}>USA</option>
-                        <option value={"russia"}>Russia</option>
-                        <option value={"china"}>China</option>
+                        {["INDIA", "USA", "Russia", "China"].map((val, index) => {
+                            return (
+                                <option key={index} value={val.split(" ").join("").toLowerCase()}>{val}</option>)
+                        })}
                     </Form.Select>
-                    <div className="text-danger">{errors?.country?.message}</div>
+                    <small className="text-danger">{errors?.country?.message}</small>
                 </Form.Group>
                 <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="state">
                     <Form.Label>Select State</Form.Label>
                     <Form.Select
                         {...register("state", { required: "state is required" })}>
-                        <option value={""}>Select State</option>
-                        <option value={"Uttrakhand"}>Uttrakhand</option>
-                        <option value={"Punjab"}>Punjab</option>
-                        <option value={"Delhi"}>Delhi</option>
-                        <option value={"Himanchal"}>Himanchal Pradesh</option>
+
+                        <option value={""}>Select State</option> {["Uttrakhand", "Punjab", "Delhi", "Himanchal Pradesh"].map((val, index) => {
+                            return (
+                                <option key={index} value={val.split(" ").join("").toLowerCase()}>{val}</option>)
+                        })}
                     </Form.Select>
-                    <div className="text-danger">{errors?.state?.message}</div>
+                    <small className="text-danger">{errors?.state?.message}</small>
                 </Form.Group>
                 <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="cities">
                     <Form.Label>Select Prefered Cities</Form.Label>
                     <Form.Select multiple
                         {...register("cities", {
-                             required: "cities is required" ,
-                             validate: (value)=> value.length==2 || "Please select any two cities",
-                             })} >
+                            required: "cities is required",
+                            validate: (value) => value.length == 2 || "Please select any two cities",
+                        })} >
                         <option value={""}>Select Cities</option>
-                        <option value={"delhi"}>Delhi</option>
-                        <option value={"tokyo"}>Tokyo</option>
-                        <option value={"paris"}>Paris</option>
-                        <option value={"london"}>London</option>
-                        <option value={"new_york"}>New York</option>
-
+                        {["Tokyo", "Paris", "London", "New York"].map((val, index) => {
+                            return (
+                                <option key={index} value={val.split(" ").join("").toLowerCase()}>{val}</option>)
+                        })}
                     </Form.Select>
-                    <div className="text-danger">{errors?.cities?.message}</div>
+                    <small className="text-danger">{errors?.cities?.message}</small>
                 </Form.Group>
                 <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="address">
                     <Form.Label>Your Complete Address</Form.Label>
-                    <Form.Control as='textarea' style={{resize:'none'}} rows={4} {...register("address",{required:"Please Enter Your Complete Address"})}>
+                    <Form.Control as='textarea' style={{ resize: 'none' }} rows={4} {...register("address", { required: "Please Enter Your Complete Address" })}>
                     </Form.Control>
-                    <div className="text-danger">{errors?.address?.message}</div>
+                    <small className="text-danger">{errors?.address?.message}</small>
                 </Form.Group>
                 <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="pin_code">
                     <Form.Label>Zip/Pin Code</Form.Label>
-                    <Form.Control {...register("pin_code",{
-                        required:"Please Enter Your Pin Code"
+                    <Form.Control {...register("pin_code", {
+                        required: "Please Enter Your Pin Code"
                     })}>
                     </Form.Control>
-                    <div className="text-danger">{errors?.pin_code?.message}</div>
+                    <small className="text-danger">{errors?.pin_code?.message}</small>
                 </Form.Group>
                 <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="joining_date">
                     <Form.Label>Joining Date</Form.Label>
-                    <Form.Control type='date' {...register("joining_date",{
-                        required:"Please Enter Your Joining Date",
-                        validate:(date) => new Date(date) < new Date() || "Joining date must be less than today's date"
+                    <Form.Control type='date' {...register("joining_date", {
+                        required: "Please Enter Your Joining Date",
+                        validate: (date) => new Date(date) < new Date() || "Joining date must be less than today's date"
                     })}>
                     </Form.Control>
-                    <div className="text-danger">{errors?.joining_date?.message}</div>
+                    <small className="text-danger">{errors?.joining_date?.message}</small>
                 </Form.Group>
                 <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="gender">
                     <Form.Label className='d-block'>Gender</Form.Label>
-                    <Form.Check type='radio' inline label="Male" value={"male"} id='Male' {...register("gender",{required:"Please select your gender"})}>
+                    <Form.Check type='radio' inline label="Male" value={"male"} id='Male' {...register("gender", { required: "Please select your gender" })}>
                     </Form.Check>
-                    <Form.Check type='radio' inline label="Female" value={"female"}  id='Female' {...register("gender")}>
+                    <Form.Check type='radio' inline label="Female" value={"female"} id='Female' {...register("gender")}>
                     </Form.Check>
                     <Form.Check type='radio' inline label="Transgender" value={"transgender"} id='Transgender' {...register("gender")}>
                     </Form.Check>
-                    
-                    <div className="text-danger">{errors?.gender?.message}</div>
+
+                    <small className="text-danger">{errors?.gender?.message}</small>
                 </Form.Group>
                 <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="hobbies">
                     <Form.Label className='d-block'>Hobbies</Form.Label>
-                    <Form.Check type='checkbox' inline label="drawing" id='drawing' value={"drawing"}{...register("hobbies",{required:"Please select your hobby",
-
+                    <Form.Check type='checkbox' inline label="drawing" id='drawing' value={"drawing"}{...register("hobbies", {
+                        required: "Please select your hobby",
+                        validate:(value)=>{return(value.length>=2||"minimum two need to select")}
                     })}>
                     </Form.Check>
                     <Form.Check type='checkbox' inline label="singing" id='singing' value={"singing"}{...register("hobbies")}>
                     </Form.Check>
                     <Form.Check type='checkbox' inline label="dancing" id='dancing' value={"dancing"}{...register("hobbies")}>
                     </Form.Check>
-                    
-                    <div className="text-danger">{errors?.hobbies?.message}</div>
+
+                    <small className="text-danger">{errors?.hobbies?.message}</small>
                 </Form.Group>
- 
+                <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="profile-picture">
+                    <Form.Label>Profile Picture</Form.Label>
+                    <Form.Control type='file' {...register("profilePicture", {
+                        required: "Profile picture is required",
+                        validate: {
+                            fileSize: (value) => {
+                                if (!value || value.length === 0) return true;
+                                const file = value[0];
+                                const maxSize = 6 * 1024 * 1024
+                                return (file.size <= maxSize || "File size must be less than 5MB")
+                            },
+                            acceptedFormats: (value) => {
+                                if (!value || value.length === 0) return true;
+                                const file = value[0];
+                                const acceptedFormatList = ["image/jpeg", "image/png", "image/gif"];
+                                return (acceptedFormatList.includes(file.type) || "Only JPEG, PNG, and GIF images are allowed.");
+                            },
+                        }
+                    })} />
+
+                    <small className="text-danger">{errors?.profilePicture?.message}</small>
+                </Form.Group>
+                <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="resume">
+                    <Form.Label>Resume</Form.Label>
+                    <Form.Control type='file' {...register("resume", {
+                        required: "Profile picture is required",
+                        validate: {
+                            acceptedFormats: (value) => {
+                                if (!value || value.length === 0) return true;
+                                const file = value[0];
+                                const acceptedFormatList = [
+                                    "application/pdf",
+                                    "application/msword",
+                                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                                ];
+                                return (acceptedFormatList.includes(file.type) || "Only PDF, DOC, and DOCX files are allowed");
+                            },
+                            fileSize: (value) => {
+                                if (!value || value.length === 0) return true;
+                                const file = value[0];
+                                const maxSize = 8 * 1024 * 1024
+                                return (file.size <= maxSize || "File size must be less than 5MB")
+                            },
+
+                        }
+                    })} />
+
+                    <small className="text-danger">{errors?.resume?.message}</small>
+                </Form.Group>
+                <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="terms_and_condition">
+                    <Form.Check type='checkbox' label="Agree to terms and conditions" value="agreed" {...register("terms_and_condition", { required: "You must agree to the Terms & Conditions before submitting" })} />
+
+                    <small className="text-danger">{errors?.terms_and_condition?.message}</small>
+                </Form.Group>
+
             </Row><Button className='text-start' type="submit">Submit form</Button></Form>
     )
 }
