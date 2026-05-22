@@ -1,31 +1,38 @@
 import { useForm } from 'react-hook-form';
 import { Button, Col, Row, Form } from 'react-bootstrap';
 const ReactHookForms = () => {
-    const { formState: { errors }, register, handleSubmit,reset } = useForm({
+    const { formState: { errors }, register, handleSubmit, reset } = useForm({
         defaultValues: {
-            firstname:"John",
-            lastname:"Smith",
-            age:20,
-            password:"Strong@123",
-            phoneNumber:"+918989898989",
-            email:"rohan01@gmail.com",
-            country:["india"],
-            state:["uttrakhand"],
-            cities:["tokyo","paris"],
-            address:"John Doe 123 Maple Street, Apartment 4B Springfield, IL 62704 United States",
-            pin_code:"263642",
-            joining_date:"2026-05-20",
-            gender:"male",
-            hobbies:["drawing","singing"],
-            terms_and_condition:"agreed"
+            firstname: "John",
+            lastname: "Smith",
+            age: 20,
+            password: "Strong@123",
+            phoneNumber: "+918989898989",
+            email: "rohan01@gmail.com",
+            country: ["india"],
+            state: ["uttrakhand"],
+            cities: ["tokyo", "paris"],
+            address: "John Doe 123 Maple Street, Apartment 4B Springfield, IL 62704 United States",
+            pin_code: "263642",
+            joining_date: "2026-05-20",
+            gender: "male",
+            hobbies: ["drawing", "singing"],
+            terms_and_condition: "agreed"
 
         }
     });
     const submitHandler = (value) => {
+        setLoading(true);
         console.log(JSON.stringify(value))
-        reset()
-        // document.getElementsByClassName("react-hook-form").reset()
-    }
+        setTimeout(() => {
+            setLoading(false);
+            toast.success("Form submitted successfully!");
+            reset();
+// document.getElementsByClassName("react-hook-form").reset()
+        }, 3000);
+    };
+    
+
     return (
         <Form className='react-hook-form' onSubmit={handleSubmit(submitHandler)}>
             <Row>
@@ -181,7 +188,7 @@ const ReactHookForms = () => {
                     <Form.Label className='d-block'>Hobbies</Form.Label>
                     <Form.Check type='checkbox' inline label="drawing" id='drawing' value={"drawing"}{...register("hobbies", {
                         required: "Please select your hobby",
-                        validate:(value)=>{return(value.length>=2||"minimum two need to select")}
+                        validate: (value) => { return (value.length >= 2 || "minimum two need to select") }
                     })}>
                     </Form.Check>
                     <Form.Check type='checkbox' inline label="singing" id='singing' value={"singing"}{...register("hobbies")}>
