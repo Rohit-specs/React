@@ -25,6 +25,7 @@ import RBNavbar from "../pages/RBNavbar"
 import RBNavandTabs from "../pages/RBNavandTabs"
 import RBOverlays from "../pages/RBOverlays"
 import ReactHookForms from "../pages/forms/ReactHookForms"
+import RHF_Yup from "../pages/forms/RHF_Yup"
 export const router = createBrowserRouter(
     [
         {
@@ -55,6 +56,7 @@ export const router = createBrowserRouter(
                     { path: "/rb-navandtabs", element: <RBNavandTabs/> },
                     { path: "/rb-overlays", element: <RBOverlays/> },
                     { path: "/react-hook-forms", element: <ReactHookForms/> },
+                    { path: "/react-hook-forms-with-yup", element: <RHF_Yup/> },
                 ]
         }
     ]

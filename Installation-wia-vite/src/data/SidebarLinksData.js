@@ -30,6 +30,7 @@ export const RbIntractive = [
 ];
 export const Forms = [
   { id: uuidv4(), links: "/react-hook-forms", menuItem: "React Hook Forms" },
+  { id: uuidv4(), links: "/react-hook-forms-with-yup", menuItem: "RHF with YUP" },
 
 ];
 
