@@ -1,8 +1,9 @@
 import React, { Fragment, useState } from 'react'
-import { Col, Row } from 'react-bootstrap';
-import { useForm } from 'react-hook-form';
-import { Form } from 'react-router-dom';
+import { Button, Col, Row ,Form } from 'react-bootstrap';
 import { toast, ToastContainer } from 'react-toastify';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { useForm } from 'react-hook-form';
 
 const RHF_Yup = () => {
     const [show, setShow] = useState(false)
@@ -10,13 +11,13 @@ const RHF_Yup = () => {
         firstname: yup.string().required("First name is required"),
         lastname: yup.string().required("Last name is required"),
         password: yup.string().required("Password is required"),
-        age: yup.number().required("Age is required"),
+        age: yup.number().typeError("Age is required"),
         address: yup.string().required("Please enter your address, it's required"),
-        country: yup.string().required("Please select the country it's required"),
-        cities: yup.array().typeError("Please select at least two cities").min(2,"Please select minimum two cities").required("Please select the city it's required"),
+        country: yup.string().required("Please select the country, it's required"),
+        cities: yup.array().min(2,"Please select minimum two cities").typeError("Please select the city it's required"),
         state: yup.string().required("Please select the state it's required"),
-        hobbies: yup.array().required("Hobbies are required")
-            .typeError("Please select at least two hobbies")
+        hobbies: yup.array()
+            .typeError("Please select hobby it's required")
             .min(2, "Please select at least two hobbies"),
         pin_code: yup.string().matches(/^\+?[1-9]\d{5,5}$/, "Enter valid PIN value")
             .required("Please enter valid Zip/Pin"),
@@ -45,7 +46,7 @@ const RHF_Yup = () => {
     }
     return (
         <Fragment>
-            <Form className='react-hook-form' onSubmit={handleSubmit(submitHandler)}>
+            <Form className='Rhf-Yup' onSubmit={handleSubmit(submitHandler)}>
                 <fieldset disabled={show}>
                     <Row>
                         <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="firstname">
