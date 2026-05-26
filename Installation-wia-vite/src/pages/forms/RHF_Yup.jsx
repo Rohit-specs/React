@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react'
-import { Button, Col, Row ,Form } from 'react-bootstrap';
+import { Button, Col, Row, Form, Spinner } from 'react-bootstrap';
 import { toast, ToastContainer } from 'react-toastify';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -10,32 +10,115 @@ const RHF_Yup = () => {
     const schema = yup.object().shape({
         firstname: yup.string().required("First name is required"),
         lastname: yup.string().required("Last name is required"),
-        password: yup.string().required("Password is required"),
-        age: yup.number().typeError("Age is required"),
-        address: yup.string().required("Please enter your address, it's required"),
-        country: yup.string().required("Please select the country, it's required"),
-        cities: yup.array().min(2,"Please select minimum two cities").typeError("Please select the city it's required"),
-        state: yup.string().required("Please select the state it's required"),
-        hobbies: yup.array()
+        password: yup
+            .string()
+            .min(6, "Password length should be greater than or equal to 6")
+            .max(10,"Password length must be less or equal to 10")
+            .required("Password is required")
+            .test("ToCheckInBetweenSpace", "Password can't contain spaces", (value) => {
+                if (value.includes(' ')) return false; else return true;
+            })
+            .matches(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>?]/, "Password must contain at least one special character")
+            .matches(/\d/, "Password must contain at least one digit"),
+        age: yup.number()
+            .min(18, "Age must be greater than 18")
+            .max(40, "Age must be less than 40").
+            typeError("Age is required"),
+        address: yup.string().
+            required("Please enter your address, it's required"),
+        country: yup.string().
+            required("Please select the country, it's required"),
+        cities: yup.array().
+            min(2, "Please select minimum two cities").
+            typeError("Please select the city it's required"),
+        state: yup
+            .string().
+            required("Please select the state it's required"),
+        hobbies: yup
+            .array()
             .typeError("Please select hobby it's required")
             .min(2, "Please select at least two hobbies"),
-        pin_code: yup.string().matches(/^\+?[1-9]\d{5,5}$/, "Enter valid PIN value")
+        pin_code: yup.string()
+            .matches(/^\+?[1-9]\d{5,5}$/, "Enter valid PIN value")
             .required("Please enter valid Zip/Pin"),
-        phoneNumber: yup.string().matches(/^\+?[1-9]\d{9,10}$/, "Enter a valid phone number")
+        phoneNumber: yup
+            .string()
+            .matches(/^(?:\+?91)?[6-9]\d{9}$/, "Enter a valid phone number")
             .required("Phone number is required."),
-        email: yup.string().matches(
-            /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, "Enter a valid email address")
+        email: yup
+            .string()
+            .matches(
+                /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, "Enter a valid email address")
             .required("Email address is required."),
         gender: yup.string().required("Gender is required"),
-        terms_and_condition: yup.bool().oneOf([true], "Terms must be accepted")
+        terms_and_condition: yup.bool().oneOf([true], "Terms must be accepted"),
+        resume: yup
+            .mixed()
+            .test("customRequired", "Please select your CV", (value) => {
+                return value.length > 0;
+            })
+            .test("acceptedFormats", "Only PDF and DOCX files are allowed", (value) => {
+                if (!value || !value[0]) return false;
+                const file = value[0];
+                const acceptedFormatList = [
+                    "application/pdf",
+                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                ];
+                return acceptedFormatList.includes(file.type)
+
+            })
+            .test("fileSize", "File size must be less than 2MB.", (value) => {
+                if (!value || !value[0]) return false;
+                const file = value[0];
+                const maxAllowedSize = 8 * 1024 * 1024;
+                return file.size < maxAllowedSize
+            }),
+        profilePicture: yup
+            .mixed()
+            .test("customRequired", "Please attach your profile picture", (value) => {
+                return value.length > 0;
+            })
+            .test("acceptedFormats", "Only jpej ,png and gif file", (value) => {
+                if (!value || !value[0]) return false;
+                const file = value[0];
+                const acceptedFormatList = [
+                    "image/jpeg",
+                    "image/png",
+                    "image/gif"
+                ];
+                return acceptedFormatList.includes(file.type)
+
+            })
+            .test("fileSize", "File size must be less than 2MB.", (value) => {
+                if (!value || !value[0]) return false;
+                const file = value[0];
+                const maxAllowedSize = 6 * 1024 * 1024;
+                return file.size < maxAllowedSize
+            }),
+
     });
 
     const { formState: { errors }, register, handleSubmit, } = useForm({
         resolver: yupResolver(schema),
-    });
+        defaultValues: {
+            firstname: "John",
+            lastname: "Smith",
+            age: 20,
+            password: "Strong@123",
+            phoneNumber: "+918989898989",
+            email: "rohan01@gmail.com",
+            country: "india",
+            state: "uttrakhand",
+            cities: ["tokyo", "paris"],
+            address: "John Doe 123 Maple Street, Apartment 4B Springfield, IL 62704 United States",
+            pin_code: "263642",
+            joining_date: "2026-05-20",
+            gender: "male",
+            hobbies: ["drawing", "singing"],
 
+        }
+    });
     const submitHandler = (value) => {
-        setLoading(true);
         console.log(JSON.stringify(value))
         setShow(true)
         setTimeout(() => {
@@ -44,6 +127,7 @@ const RHF_Yup = () => {
             reset()
         }, 3000)
     }
+
     return (
         <Fragment>
             <Form className='Rhf-Yup' onSubmit={handleSubmit(submitHandler)}>
@@ -53,36 +137,36 @@ const RHF_Yup = () => {
                             <Form.Label>First name</Form.Label>
                             <Form.Control type=
                                 "text" {...register("firstname")} />
-                            <small className="text-danger">{errors?.firstname?.message}</small>
+                            <small className="text-danger d-inline-block">{errors?.firstname?.message}</small>
                         </Form.Group>
                         <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="lastname">
                             <Form.Label>Last name</Form.Label>
                             <Form.Control type=
                                 "text" {...register("lastname")} />
-                            <small className="text-danger">{errors?.lastname?.message}</small>
+                            <small className="text-danger d-inline-block">{errors?.lastname?.message}</small>
                         </Form.Group>
                         <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="age">
                             <Form.Label>Age</Form.Label>
                             <Form.Control type="number" {...register("age")} />
-                            <small className="text-danger">{errors?.age?.message}</small>
+                            <small className="text-danger d-inline-block">{errors?.age?.message}</small>
                         </Form.Group>
                         <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="password">
                             <Form.Label>Password</Form.Label>
                             <Form.Control type=
                                 "text" {...register("password")} />
-                            <small className="text-danger">{errors?.password?.message}</small>
+                            <small className="text-danger d-inline-block">{errors?.password?.message}</small>
                         </Form.Group>
                         <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="phone">
                             <Form.Label>Phone Number</Form.Label>
                             <Form.Control type=
                                 "tel" {...register("phoneNumber")} />
-                            <small className="text-danger">{errors?.phoneNumber?.message}</small>
+                            <small className="text-danger d-inline-block">{errors?.phoneNumber?.message}</small>
                         </Form.Group>
                         <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="email">
                             <Form.Label>Email</Form.Label>
                             <Form.Control type=
                                 "email" {...register("email")} />
-                            <small className="text-danger">{errors?.email?.message}</small>
+                            <small className="text-danger d-inline-block">{errors?.email?.message}</small>
                         </Form.Group>
                         <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="country">
                             <Form.Label>Select Country</Form.Label>
@@ -94,7 +178,7 @@ const RHF_Yup = () => {
                                         <option key={index} value={val.split(" ").join("").toLowerCase()}>{val}</option>)
                                 })}
                             </Form.Select>
-                            <small className="text-danger">{errors?.country?.message}</small>
+                            <small className="text-danger d-inline-block">{errors?.country?.message}</small>
                         </Form.Group>
                         <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="state">
                             <Form.Label>Select State</Form.Label>
@@ -106,7 +190,7 @@ const RHF_Yup = () => {
                                         <option key={index} value={val.split(" ").join("").toLowerCase()}>{val}</option>)
                                 })}
                             </Form.Select>
-                            <small className="text-danger">{errors?.state?.message}</small>
+                            <small className="text-danger d-inline-block">{errors?.state?.message}</small>
                         </Form.Group>
                         <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="cities">
                             <Form.Label>Select Prefered Cities</Form.Label>
@@ -118,25 +202,25 @@ const RHF_Yup = () => {
                                         <option key={index} value={val.split(" ").join("").toLowerCase()}>{val}</option>)
                                 })}
                             </Form.Select>
-                            <small className="text-danger">{errors?.cities?.message}</small>
+                            <small className="text-danger d-inline-block">{errors?.cities?.message}</small>
                         </Form.Group>
                         <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="address">
                             <Form.Label>Your Complete Address</Form.Label>
                             <Form.Control as='textarea' style={{ resize: 'none' }} rows={4} {...register("address")}>
                             </Form.Control>
-                            <small className="text-danger">{errors?.address?.message}</small>
+                            <small className="text-danger d-inline-block">{errors?.address?.message}</small>
                         </Form.Group>
                         <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="pin_code">
                             <Form.Label>Zip/Pin Code</Form.Label>
                             <Form.Control {...register("pin_code")}>
                             </Form.Control>
-                            <small className="text-danger">{errors?.pin_code?.message}</small>
+                            <small className="text-danger d-inline-block">{errors?.pin_code?.message}</small>
                         </Form.Group>
                         <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="joining_date">
                             <Form.Label>Joining Date</Form.Label>
                             <Form.Control type='date' {...register("joining_date")}>
                             </Form.Control>
-                            <small className="text-danger">{errors?.joining_date?.message}</small>
+                            <small className="text-danger d-inline-block">{errors?.joining_date?.message}</small>
                         </Form.Group>
                         <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="gender">
                             <Form.Label className='d-block'>Gender</Form.Label>
@@ -147,7 +231,7 @@ const RHF_Yup = () => {
                             <Form.Check type='radio' inline label="Transgender" value={"transgender"} id='Transgender' {...register("gender")}>
                             </Form.Check>
 
-                            <small className="text-danger">{errors?.gender?.message}</small>
+                            <small className="text-danger d-inline-block">{errors?.gender?.message}</small>
                         </Form.Group>
                         <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="hobbies">
                             <Form.Label className='d-block'>Hobbies</Form.Label>
@@ -158,7 +242,7 @@ const RHF_Yup = () => {
                             <Form.Check type='checkbox' inline label="dancing" id='dancing' value={"dancing"}{...register("hobbies")}>
                             </Form.Check>
 
-                            <small className="text-danger">{errors?.hobbies?.message}</small>
+                            <small className="text-danger d-inline-block">{errors?.hobbies?.message}</small>
                         </Form.Group>
                         <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="profile-picture">
                             <Form.Label>Profile Picture</Form.Label>
@@ -180,18 +264,18 @@ const RHF_Yup = () => {
                                 // }
                             )} />
 
-                            <small className="text-danger">{errors?.profilePicture?.message}</small>
+                            <small className="text-danger d-inline-block">{errors?.profilePicture?.message}</small>
                         </Form.Group>
                         <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="resume">
                             <Form.Label>Resume</Form.Label>
                             <Form.Control type='file' {...register("resume")} />
 
-                            <small className="text-danger">{errors?.resume?.message}</small>
+                            <small className="text-danger d-inline-block">{errors?.resume?.message}</small>
                         </Form.Group>
                         <Form.Group as={Col} xs={12} lg={6} className="mb-3" controlId="terms_and_condition">
-                            <Form.Check type='checkbox' label="Agree to terms and conditions" value="agreed" {...register("terms_and_condition")} />
+                            <Form.Check type='checkbox' label="Agree to terms and conditions" {...register("terms_and_condition")} />
 
-                            <small className="text-danger">{errors?.terms_and_condition?.message}</small>
+                            <small className="text-danger d-inline-block">{errors?.terms_and_condition?.message}</small>
                         </Form.Group>
 
                     </Row>

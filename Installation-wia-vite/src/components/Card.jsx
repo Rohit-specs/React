@@ -2,7 +2,7 @@ import {Avatar} from "./Avatar"
 function Card(){
     return(
         <main>
-            <div className="staticcard shadow">
+            <div className="staticcard bg-light shadow">
                 <Avatar />
                 <div className="cardContenent">
                     <h2 className="fontsizelg fw-bold mt-2 mb-3">John Doe</h2>
