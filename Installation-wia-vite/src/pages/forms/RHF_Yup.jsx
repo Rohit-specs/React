@@ -13,7 +13,7 @@ const RHF_Yup = () => {
         password: yup
             .string()
             .min(6, "Password length should be greater than or equal to 6")
-            .max(10,"Password length must be less or equal to 10")
+            .max(10, "Password length must be less or equal to 10")
             .required("Password is required")
             .test("ToCheckInBetweenSpace", "Password can't contain spaces", (value) => {
                 if (value.includes(' ')) return false; else return true;
@@ -22,18 +22,23 @@ const RHF_Yup = () => {
             .matches(/\d/, "Password must contain at least one digit"),
         age: yup.number()
             .min(18, "Age must be greater than 18")
-            .max(40, "Age must be less than 40").
-            typeError("Age is required"),
+            .max(40, "Age must be less than 40")
+            .typeError("Age is required"),
         address: yup.string().
             required("Please enter your address, it's required"),
-        country: yup.string().
-            required("Please select the country, it's required"),
+        country: yup.string()
+        .required("Please select the country, it's required"),
         cities: yup.array().
-            min(2, "Please select minimum two cities").
-            typeError("Please select the city it's required"),
+            min(2, "Please select minimum two cities")
+            .typeError("Please select the city it's required"),
         state: yup
             .string().
             required("Please select the state it's required"),
+        joining_date: yup
+            .string()
+            .required("Please enter joining date.it's required")
+            ,
+
         hobbies: yup
             .array()
             .typeError("Please select hobby it's required")
@@ -54,9 +59,10 @@ const RHF_Yup = () => {
         terms_and_condition: yup.bool().oneOf([true], "Terms must be accepted"),
         resume: yup
             .mixed()
-            .test("customRequired", "Please select your CV", (value) => {
-                return value.length > 0;
-            })
+            // .test("customRequired", "Please select your Resume", (value) => {
+            //     return value && value.length > 0;;
+            // })
+            .required("Please select your Resume")
             .test("acceptedFormats", "Only PDF and DOCX files are allowed", (value) => {
                 if (!value || !value[0]) return false;
                 const file = value[0];
@@ -67,7 +73,7 @@ const RHF_Yup = () => {
                 return acceptedFormatList.includes(file.type)
 
             })
-            .test("fileSize", "File size must be less than 2MB.", (value) => {
+            .test("fileSize", "File size must be less than 8MB.", (value) => {
                 if (!value || !value[0]) return false;
                 const file = value[0];
                 const maxAllowedSize = 8 * 1024 * 1024;
@@ -75,10 +81,11 @@ const RHF_Yup = () => {
             }),
         profilePicture: yup
             .mixed()
-            .test("customRequired", "Please attach your profile picture", (value) => {
-                return value.length > 0;
+            .required("Please select your profile picture")
+            .test("customRequired", "Please attach profile picture. it's required", (value) => {
+                return value && value.length > 0;
             })
-            .test("acceptedFormats", "Only jpej ,png and gif file", (value) => {
+            .test("acceptedFormats", "Only JPEG, PNG, and GIF images are allowed.", (value) => {
                 if (!value || !value[0]) return false;
                 const file = value[0];
                 const acceptedFormatList = [
@@ -89,7 +96,7 @@ const RHF_Yup = () => {
                 return acceptedFormatList.includes(file.type)
 
             })
-            .test("fileSize", "File size must be less than 2MB.", (value) => {
+            .test("fileSize", "File size must be less than 6MB.", (value) => {
                 if (!value || !value[0]) return false;
                 const file = value[0];
                 const maxAllowedSize = 6 * 1024 * 1024;
@@ -98,25 +105,25 @@ const RHF_Yup = () => {
 
     });
 
-    const { formState: { errors }, register, handleSubmit, } = useForm({
+    const { formState: { errors }, register, handleSubmit, reset } = useForm({
         resolver: yupResolver(schema),
-        defaultValues: {
-            firstname: "John",
-            lastname: "Smith",
-            age: 20,
-            password: "Strong@123",
-            phoneNumber: "+918989898989",
-            email: "rohan01@gmail.com",
-            country: "india",
-            state: "uttrakhand",
-            cities: ["tokyo", "paris"],
-            address: "John Doe 123 Maple Street, Apartment 4B Springfield, IL 62704 United States",
-            pin_code: "263642",
-            joining_date: "2026-05-20",
-            gender: "male",
-            hobbies: ["drawing", "singing"],
+        // defaultValues: {
+        //     firstname: "John",
+        //     lastname: "Smith",
+        //     age: 20,
+        //     password: "Strong@123",
+        //     phoneNumber: "+918989898989",
+        //     email: "rohan01@gmail.com",
+        //     country: "india",
+        //     state: "uttrakhand",
+        //     cities: ["tokyo", "paris"],
+        //     address: "John Doe 123 Maple Street, Apartment 4B Springfield, IL 62704 United States",
+        //     pin_code: "263642",
+        //     joining_date: "2026-05-20",
+        //     gender: "male",
+        //     hobbies: ["drawing", "singing"],
 
-        }
+        // }
     });
     const submitHandler = (value) => {
         console.log(JSON.stringify(value))
@@ -125,7 +132,7 @@ const RHF_Yup = () => {
             setShow(false)
             toast.success("Form Submitted Successfully")
             reset()
-        }, 3000)
+        }, 1500)
     }
 
     return (
